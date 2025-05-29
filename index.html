@@ -20,6 +20,7 @@
       mix-blend-mode: color-dodge;
       background-size: 150% 150%;
       background-position: 100%;
+      transition: all 0.1s;
     }
     .card {
       width: 393px; 
@@ -43,11 +44,17 @@
       var rotateY = -1/5 * x + 20
       var rotateX = 4/30 * y - 20
 
-      overlay.style = `background-position : ${x/5}%`
+      overlay.style = `background-position : ${x/5 + y/5}%`
       
       container.style = `transform : perspective(350px) rotateX(${rotateX}deg)
       rotateY(${rotateY}deg)`
     })
+
+    container.addEventListener('mouseout', function(){
+      overlay.style = 'filter : opacity(0)'
+      container.style = 'transform : perspective(350px) rotateY(0deg) rotateX(0deg)'
+    })
+
   </script>
 </body>
 </html>
