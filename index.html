@@ -24,7 +24,7 @@
     container.addEventListener('mousemove', function(e){
       var x = e.offsetX
       var y = e.offsetY
-      console.log(x, y)
+      var rotateY = -1/5 * x + 20
       container.style.transform = 'rotateY(20deg)'
     })
   </script>
