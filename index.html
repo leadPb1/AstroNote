@@ -64,9 +64,9 @@
   </style>
 </head>
 <body>
-<button id="theme-toggle" aria-label="테마 변경" title="테마 변경">  
-  <span class="icon">🌙</span>
-  <span class="text">Dark Mode</span>
+<button id="theme-toggle" aria-label="테마 변경" title="테마 변경" style="all:unset; cursor:pointer; display:flex; align-items:center; gap:10px; padding:12px 24px; border-radius:30px; background: linear-gradient(135deg, #6b8ce3, #a59cf7); color:white; font-weight:700; font-size:1.2rem; box-shadow: 0 6px 15px rgba(107, 140, 227, 0.6); transition: all 0.3s ease;">
+  <span id="icon">🌙</span>
+  <span id="text">Dark Mode</span>
 </button>
 <script>
   const stars = [
@@ -131,12 +131,29 @@
     });
   });
 
-    document.addEventListener('DOMContentLoaded', () => {
     const toggleBtn = document.getElementById('theme-toggle');
+    const iconSpan = document.getElementById('icon');
+    const textSpan = document.getElementById('text');
+
     toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark-theme');
+
+      if(document.body.classList.contains('dark-theme')){
+        // 다크모드면 아이콘 바꾸고 텍스트 변경
+        iconSpan.textContent = '☀️';
+        textSpan.textContent = 'Light Mode';
+        toggleBtn.style.background = 'linear-gradient(135deg, #f5a623, #f7d794)';
+        toggleBtn.style.color = '#333';
+        toggleBtn.style.boxShadow = '0 6px 15px rgba(247, 215, 148, 0.8)';
+      } else {
+        // 라이트모드면 원래대로
+        iconSpan.textContent = '🌙';
+        textSpan.textContent = 'Dark Mode';
+        toggleBtn.style.background = 'linear-gradient(135deg, #6b8ce3, #a59cf7)';
+        toggleBtn.style.color = 'white';
+        toggleBtn.style.boxShadow = '0 6px 15px rgba(107, 140, 227, 0.6)';
+      }
     });
-  });
 </script>
 
 </body>
