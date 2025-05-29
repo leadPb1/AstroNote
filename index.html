@@ -49,10 +49,28 @@
       overflow: hidden;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
     }
+    /* 기본 라이트 테마 */
+    body {
+      background-color: white;
+      color: black;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* 다크 테마 */
+    body.dark-theme {
+      background-color: #0b0c10;
+      color: #c5c6c7;
+    }
+
+    /* 카드 스타일도 다크 모드에 맞게 변경 */
+    body.dark-theme .card {
+      box-shadow: 0 0 40px rgba(200, 200, 255, 0.6);
+      /* 필요하면 배경 밝기 조절도 추가 */
+    }
   </style>
 </head>
 <body>
-
+<button id="theme-toggle">테마 변경</button>
 <script>
   const stars = [
     { name: "에라이", img: "에라이.png" },
@@ -115,6 +133,10 @@
       container.style.transform = 'rotateY(0deg) rotateX(0deg)';
     });
   });
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-theme');
+    });
 </script>
 
 </body>
