@@ -42,35 +42,59 @@
     }
 
     .card {
-      width: 393px; 
-      height: 852px;
-      background-size: cover;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-    }
-    /* 기본 라이트 테마 */
-    body {
-      background-color: white;
-      color: black;
-      transition: background-color 0.3s, color 0.3s;
+        width: 393px; 
+        height: 852px;
+        background-size: cover;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      }
+    #theme-toggle {
+      background: linear-gradient(135deg, #6b8ce3, #a59cf7);
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(107, 140, 227, 0.6);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
     }
 
-    /* 다크 테마 */
-    body.dark-theme {
-      background-color: #0b0c10;
-      color: #c5c6c7;
+    #theme-toggle:hover {
+      box-shadow: 0 8px 20px rgba(107, 140, 227, 0.9);
+      transform: scale(1.05);
     }
 
-    /* 카드 스타일도 다크 모드에 맞게 변경 */
-    body.dark-theme .card {
-      box-shadow: 0 0 40px rgba(200, 200, 255, 0.6);
-      /* 필요하면 배경 밝기 조절도 추가 */
+    #theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    #theme-toggle .icon {
+      font-size: 1.5rem;
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from {
+        text-shadow: 0 0 10px #a59cf7;
+      }
+      to {
+        text-shadow: 0 0 20px #6b8ce3;
+      }
     }
   </style>
 </head>
 <body>
-<button id="theme-toggle">테마 변경</button>
+<button id="theme-toggle" aria-label="테마 변경" title="테마 변경">  
+  <span class="icon">🌙</span>
+  <span class="text">Dark Mode</span>
+</button>
 <script>
   const stars = [
     { name: "에라이", img: "에라이.png" },
