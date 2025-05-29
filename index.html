@@ -89,6 +89,27 @@
       container.style.transform = 'rotateY(0deg) rotateX(0deg)';
     });
   });
+  
+    container.addEventListener('touchmove', function(e){
+  e.preventDefault(); // 스크롤 막기
+  const touch = e.touches[0];
+  // container 기준 위치 계산하려면 getBoundingClientRect() 필요
+  const rect = container.getBoundingClientRect();
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+
+  const rotateY = -1 / 5 * x + 20;
+  const rotateX = 4 / 30 * y - 20;
+
+  overlay.style.backgroundPosition = `${x / 5 + y / 5}%`;
+  container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  container.addEventListener('touchout', function(){
+      overlay.style = 'filter : opacity(0)';
+      container.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  });
 </script>
 
 </body>
