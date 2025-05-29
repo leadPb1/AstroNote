@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>별 도감</title>
   <style>
     body {
@@ -74,39 +74,43 @@
 
     const overlay = container.querySelector('.overlay');
 
+    // 마우스 무브 이벤트
     container.addEventListener('mousemove', function(e){
       const x = e.offsetX;
       const y = e.offsetY;
       const rotateY = -1 / 5 * x + 20;
       const rotateX = 4 / 30 * y - 20;
 
-      overlay.style = `background-position : ${x / 5 + y / 5}%`;
+      overlay.style.backgroundPosition = `${x / 5 + y / 5}%`;
       container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      overlay.style.filter = 'brightness(1.1) opacity(0.6)';
     });
 
+    // 마우스 아웃 이벤트
     container.addEventListener('mouseout', function(){
-      overlay.style = 'filter : opacity(0)';
+      overlay.style.filter = 'opacity(0)';
       container.style.transform = 'rotateY(0deg) rotateX(0deg)';
     });
-  });
-  
+
+    // 터치 무브 이벤트 (모바일 대응)
     container.addEventListener('touchmove', function(e){
-  e.preventDefault(); // 스크롤 막기
-  const touch = e.touches[0];
-  // container 기준 위치 계산하려면 getBoundingClientRect() 필요
-  const rect = container.getBoundingClientRect();
-  const x = touch.clientX - rect.left;
-  const y = touch.clientY - rect.top;
+      e.preventDefault(); // 스크롤 방지
+      const touch = e.touches[0];
+      const rect = container.getBoundingClientRect();
+      const x = touch.clientX - rect.left;
+      const y = touch.clientY - rect.top;
 
-  const rotateY = -1 / 5 * x + 20;
-  const rotateX = 4 / 30 * y - 20;
+      const rotateY = -1 / 5 * x + 20;
+      const rotateX = 4 / 30 * y - 20;
 
-  overlay.style.backgroundPosition = `${x / 5 + y / 5}%`;
-  container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  });
+      overlay.style.backgroundPosition = `${x / 5 + y / 5}%`;
+      container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      overlay.style.filter = 'brightness(1.1) opacity(0.6)';
+    });
 
-  container.addEventListener('touchout', function(){
-      overlay.style = 'filter : opacity(0)';
+    // 터치 끝났을 때 원위치
+    container.addEventListener('touchend', function(){
+      overlay.style.filter = 'opacity(0)';
       container.style.transform = 'rotateY(0deg) rotateX(0deg)';
     });
   });
