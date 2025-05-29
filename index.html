@@ -21,7 +21,10 @@
   </div>
   <script>
     var container = document.querySelector('.container')
-    container.addEventListener('mousemove', function(){
+    container.addEventListener('mousemove', function(e){
+      var x = e.offsetX
+      var y = e.offsetY
+      console.log(x, y)
       container.style.transform = 'rotateY(20deg)'
     })
   </script>
